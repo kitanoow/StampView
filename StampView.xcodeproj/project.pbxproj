@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B4A24AA1850A4BF001DC167 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4A24A91850A4BF001DC167 /* heart.png */; };
 		8B8B2E3D184E0BEB008D3BA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8B2E3C184E0BEB008D3BA5 /* Foundation.framework */; };
 		8B8B2E3F184E0BEB008D3BA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8B2E3E184E0BEB008D3BA5 /* CoreGraphics.framework */; };
 		8B8B2E41184E0BEB008D3BA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8B2E40184E0BEB008D3BA5 /* UIKit.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B4A24A91850A4BF001DC167 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		8B8B2E39184E0BEB008D3BA5 /* StampView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StampView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8B2E3C184E0BEB008D3BA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8B8B2E3E184E0BEB008D3BA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -125,6 +127,7 @@
 		8B8B2E42184E0BEB008D3BA5 /* StampView */ = {
 			isa = PBXGroup;
 			children = (
+				8B4A24A91850A4BF001DC167 /* heart.png */,
 				8B8B2E74184E0DCC008D3BA5 /* stamp_delete.png */,
 				8B8B2E75184E0DCC008D3BA5 /* stamp_controller.png */,
 				8B8B2E4B184E0BEB008D3BA5 /* AppDelegate.h */,
@@ -253,6 +256,7 @@
 				8B8B2E47184E0BEB008D3BA5 /* InfoPlist.strings in Resources */,
 				8B8B2E76184E0DCC008D3BA5 /* stamp_delete.png in Resources */,
 				8B8B2E77184E0DCC008D3BA5 /* stamp_controller.png in Resources */,
+				8B4A24AA1850A4BF001DC167 /* heart.png in Resources */,
 				8B8B2E50184E0BEB008D3BA5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +490,7 @@
 				8B8B2E6D184E0BEB008D3BA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B8B2E6E184E0BEB008D3BA5 /* Build configuration list for PBXNativeTarget "StampViewTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				8B8B2E70184E0BEB008D3BA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

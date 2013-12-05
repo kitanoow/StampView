@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DragView.h"
 
+@protocol StampViewDelegate;
+
 @interface StampView : DragView
+@property (nonatomic,retain) id<StampViewDelegate> delegate;
 - (void)setImage:(UIImage*)image;
+- (void)changeBorderView:(BOOL)statue;
+@end
+
+@protocol StampViewDelegate <NSObject>
+-(void)startDrag:(StampView*)stampView;
 @end

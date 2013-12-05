@@ -8,14 +8,16 @@
 
 #import "StampView.h"
 #import "BorderView.h"
-#define kControllerViewSize 30
-#define kStampViewMinSize 50
+#define kControllerViewSize 24
+#define kBorderPaddingSize  24
+#define kStampViewMinSize   10
 
 @implementation StampView
 {
     UIImageView *imageView;
     BorderView *borderView;
     UIImageView *controllerView;
+    UIImageView *deleteView;
     
     CGPoint startPos;
     float deltaAngle;
@@ -30,16 +32,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        borderView = [[BorderView alloc] initWithFrame:CGRectInset(self.bounds,2,2)];
+        borderView = [[BorderView alloc] initWithFrame:CGRectInset(self.bounds,kBorderPaddingSize/2,kBorderPaddingSize/2)];
         [self addSubview:borderView];
-        imageView = [[UIImageView alloc ] initWithFrame:CGRectInset(self.bounds,4,4)];
+        imageView = [[UIImageView alloc ] initWithFrame:CGRectInset(self.bounds,kBorderPaddingSize,kBorderPaddingSize)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:imageView];
 
         
         controllerView = [[UIImageView alloc ]init];
         controllerView.image = [UIImage imageNamed:@"stamp_controller"];
-        controllerView.frame =CGRectMake(self.bounds.size.width-kControllerViewSize,
+        controllerView.frame =CGRectMake(
+                                         self.bounds.size.width-kControllerViewSize,
                                          self.bounds.size.height-kControllerViewSize,
                                          kControllerViewSize, kControllerViewSize);
         controllerView.userInteractionEnabled = YES;
@@ -48,6 +51,19 @@
                                        action:@selector(resizeAndRotate:)];
         [controllerView addGestureRecognizer:pan];
         [self addSubview:controllerView];
+
+        deleteView = [[UIImageView alloc ]init];
+        deleteView.image = [UIImage imageNamed:@"stamp_delete"];
+        deleteView.frame =CGRectMake(0,
+                                         0,
+                                         kControllerViewSize, kControllerViewSize);
+        deleteView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(deleteStamp:)];
+        [deleteView addGestureRecognizer:tap];
+        [self addSubview:deleteView];
+        
         
         deltaAngle = atan2(self.frame.origin.y+self.frame.size.height - self.center.y,
                            self.frame.origin.x+self.frame.size.width - self.center.x);
@@ -72,6 +88,18 @@
     // Drawing code
 }
 */
+
+-(void)deleteStamp :(UITapGestureRecognizer*)sender{
+    [self removeFromSuperview];
+}
+
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    [super touchesBegan:touches withEvent:event];
+    if([_delegate respondsToSelector:@selector(startDrag:)]){
+        [_delegate startDrag:self];
+    }
+}
 
 
 -(void)resizeAndRotate:(UIPanGestureRecognizer*)sender
@@ -125,7 +153,7 @@
             float angle = atan2([sender locationInView:self.superview].y - self.center.y,
                                 [sender locationInView:self.superview].x - self.center.x);
             self.transform = CGAffineTransformMakeRotation(-(deltaAngle - angle));
-            borderView.frame = CGRectInset(self.bounds, 2, 2);
+            borderView.frame = CGRectInset(self.bounds, kBorderPaddingSize/2, kBorderPaddingSize/2);
             startPos = [sender locationInView:self];
             break;
         case UIGestureRecognizerStateEnded:
@@ -140,9 +168,12 @@
 - (void)setImage:(UIImage*)image
 {
     imageView.image = image;
-
-    
-
+}
+- (void)changeBorderView:(BOOL)statue
+{
+    borderView.hidden = statue;
+    controllerView.hidden = statue;
+    deleteView.hidden = statue;
 }
 
 

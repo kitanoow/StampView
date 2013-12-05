@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StampView.h"
 
 @interface ViewController : UIViewController
+<StampViewDelegate>
 
 @end
